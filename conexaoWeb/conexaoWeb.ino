@@ -24,10 +24,10 @@
 
 //LIBS
 #include <ESP8266WiFi.h>
-
+  
 //VARS
-const char* ssid = "SATC IOT";
-const char* password = "IOT2022@";
+const char* ssid = "Carloscarlos";
+const char* password = "123123123";
 
 WiFiServer server(80);
 
@@ -35,7 +35,7 @@ unsigned long currentTime = 0, previousTime = 0;
 const long timeOut = 2000;
 
 String header = "";
-String stateLedR = "Off";
+char stateLed = 'O';
 
 
 #define ledR D6
@@ -98,13 +98,24 @@ void loop()
             client.println("Connection: closed");
             client.println("");
 
-            if (header.indexOf("GET /ledR/on") >= 0) {
-              digitalWrite(ledR, HIGH);
-              stateLedR = "On";
-            } else if (header.indexOf("GET /ledR/off") >= 0 ) {
+            if (header.indexOf("GET /ActiveLedIs/R") >= 0) {
 
+              digitalWrite(ledG, LOW);
+              digitalWrite(ledB, LOW);
+              digitalWrite(ledR, HIGH);
+              stateLed = 'R';
+            } else if (header.indexOf("GET /ActiveLedIs/G") >= 0 ) {
+
+              digitalWrite(ledG, HIGH);
+              digitalWrite(ledB, LOW);
               digitalWrite(ledR, LOW);
-              stateLedR = "Off";
+              stateLed = 'G';
+            } else if (header.indexOf("GET /ActiveLedIs/B") >= 0 ) {
+
+              digitalWrite(ledG, LOW);
+              digitalWrite(ledB, HIGH);
+              digitalWrite(ledR, LOW);
+              stateLed = 'B';
             }
 
             // Display the HTML web page
@@ -116,20 +127,77 @@ void loop()
             client.println("<link rel=\"icon\" href=\"data:,\">");
             // CSS to style the on/off buttons
             // Feel free to change the background-color and font-size attributes to fit your preferences
-            client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
-            client.println(".button { background-color: #195B6A; border: none; color: white; padding: 16px 40px;");
-            client.println("text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}");
-            client.println(".button2 {background-color: #77878A;}</style></head>");
 
-            client.println("<body><h1>IoT II - ESP8266 web server!!</h1>");
-            client.println("<p> Estado do LED Vermelho:" + stateLedR + " </p>");
 
-            if (stateLedR == "On") {
-              client.println("<p><a href=\"/ledR/off\"><button class=\"button button2\">OFF</button></a></p>");
-            } else {
-              client.println("<p><a href=\"/ledR/on\"><button class=\"button\">ON </button></a></p>");
+            //STYLES
+            client.println("<style>");
+
+            client.println("html {font-family: Helvetica;margin: 0;padding: 0;box-sizing: border-box;}");
+
+            client.println("* {margin: 0;padding: 0;box-sizing: border-box;color: #9ba8b9;}");
+
+            client.println(".hr {width: 100%;border-color: #9ba8b9;}");
+
+            client.println(".background {display: flex;flex-direction: column;align-items: center;padding: 24px;width: 100%; height: 100vh;background-color: #273341;}");
+
+            client.println(".container {display: flex;gap: 24px;flex-direction: column;justify-content: center;align-items: center;padding: 24px;border-radius: 10px;width: 30%;background-color: #4b5767;}");
+
+            client.println(".button { border-radius: 10px;padding: 8px 12px;outline: none;border: none;cursor: pointer; color: white;}");
+
+            client.println(".rgbController { display: flex;gap: 8px;}");
+
+            client.println(".ledIndicatorContainer {display: flex;align-items: center;justify-content: center;flex-direction: column;gap: 8px;}");
+
+            client.println(".ledIndicator {width: 24px;height: 24px;background-color: #2b2b2b;border-radius: 100%;}");
+
+            client.println("</style>");
+
+            client.println("</head>");
+
+            //BODY
+            client.println("<body>");
+
+            client.println("<div class=\"background\">");
+            client.println("<div class=\"container\">");
+
+            client.println("<h1>IoT II - ESP8266 Web Server</h1>");
+            client.println("<hr class=\"hr\" />");
+
+            client.println("<div class=\"ledIndicatorContainer\">");
+
+            client.println("<p>Led status:</p>");
+
+            switch (stateLed) {
+
+              case 'R':
+                client.println("<div class=\"ledIndicator\" style=\"background-color: red\"></div>");
+                break;
+              case 'G':
+                client.println("<div class=\"ledIndicator\" style=\"background-color: green\"></div>");
+                break;
+              case 'B':
+                client.println("<div class=\"ledIndicator\" style=\"background-color: blue\"></div>");
+                break;
+              default :
+                client.println("<div class=\"ledIndicator\" style=\"background-color: #2b2b2b\"></div>");
+                break;
             }
 
+
+
+            client.println("</div>");
+            client.println("<hr class=\"hr\" />");
+
+
+            client.println("<div class=\"rgbController\">");
+
+            client.println("<p> <a href=\"/ActiveLedIs/R\"><button class=\"button\" style=\"background-color: red\">R</button></a></p>");
+            client.println("<p> <a href=\"/ActiveLedIs/G\"><button class=\"button\" style=\"background-color: green\">G</button></a></p>");
+            client.println("<p> <a href=\"/ActiveLedIs/B\"><button class=\"button\" style=\"background-color: blue\">B</button></a></p>");
+
+            client.println("</div>");
+            client.println("</div>");
+            client.println("</div>");
 
             client.println("</body");
             client.println("</html>");

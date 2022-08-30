@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <style>
+      html {
+        font-family: Helvetica;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: #9ba8b9;
+      }
+
+      .hr {
+        width: 100%;
+        border-color: #9ba8b9;
+      }
+
+      .background {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px;
+        width: 100%;
+        height: 100vh;
+        background-color: #273341;
+      }
+
+      .container {
+        display: flex;
+        gap: 24px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 24px;
+        border-radius: 10px;
+        width: 30%;
+        background-color: #4b5767;
+        @media (max-width: 900px) {
+          width: 100%;
+        }
+      }
+
+      .button {
+        border-radius: 10px;
+        padding: 8px 12px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: white;
+      }
+
+      .rgbController {
+        display: flex;
+        gap: 8px;
+      }
+
+      .ledIndicatorContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .ledIndicator {
+        width: 24px;
+        height: 24px;
+        background-color: #2b2b2b;
+        border-radius: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="background">
+      <div class="container">
+        <h1>IoT II - ESP8266 Web Server</h1>
+
+        <hr class="hr" />
+
+        <div class="ledIndicatorContainer">
+          <p>Led status:</p>
+          <div class="ledIndicator" style="background-color: red"></div>
+        </div>
+
+        <hr class="hr" />
+
+        <div class="rgbController">
+          <p>
+            <a href="/ActiveLedIs/R"
+              ><button class="button" style="background-color: red">
+                R
+              </button></a
+            >
+          </p>
+          <p>
+            <a href="/ActiveLedIs/G">
+              <button class="button" style="background-color: green">
+                G
+              </button></a
+            >
+          </p>
+          <p>
+            <a href="/ActiveLedIs/B">
+              <button class="button" style="background-color: blue">B</button>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
