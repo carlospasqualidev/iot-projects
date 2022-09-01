@@ -26,8 +26,8 @@
 #include <ESP8266WiFi.h>
   
 //VARS
-const char* ssid = "Carloscarlos";
-const char* password = "123123123";
+const char* ssid = "SATC IOT";
+const char* password = "IOT2022@";
 
 WiFiServer server(80);
 
@@ -136,7 +136,7 @@ void loop()
 
             client.println("* {margin: 0;padding: 0;box-sizing: border-box;color: #9ba8b9;}");
 
-            client.println(".hr {width: 100%;border-color: #9ba8b9;}");
+            client.println(".hr {width: 100%; border-color: #9ba8b9;}");
 
             client.println(".background {display: flex;flex-direction: column;align-items: center;padding: 24px;width: 100%; height: 100vh;background-color: #273341;}");
 
@@ -186,7 +186,7 @@ void loop()
 
 
             client.println("</div>");
-            client.println("<hr class=\"hr\" />");
+            client.println("<hr class=\"hr\"></hr>");
 
 
             client.println("<div class=\"rgbController\">");
