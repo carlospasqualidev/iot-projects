@@ -1,5 +1,5 @@
  /**--------------------------------------------------------
-2 Autor: Prof° Vagner Rodrigues;
+2 Autor: Carlos Pasquali;
 3 Hardware: WeMos D1 ESP8266
 4 Framework: Arduino IDE 1.8.19
 5 Curso: Engenharia de Computação
