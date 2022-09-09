@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ESP8266 Web Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>ESP8266 Web Server</h1>
+
+      <div class="cardContainer">
+        <div class="card">
+          <p>Led Red</p>
+          <strong> %STATERED%</strong>
+          <hr />
+
+          <a href="/ledRon"><button class="button">ON</button></a>
+          <a href="/ledRoff"><button class="button">OFF</button></a>
+        </div>
+
+        <div class="card">
+          <p>Led Green</p>
+          <strong> %STATEGREEN%</strong>
+          <hr />
+
+          <a href="/ledGon"><button class="button">ON</button></a>
+          <a href="/ledGoff"><button class="button button2">OFF</button></a>
+        </div>
+
+        <div class="card">
+          <p>Led Blue</p>
+          <strong> %STATEBLUE%</strong>
+          <hr />
+
+          <a href="/ledBon"><button class="button">ON</button></a>
+          <a href="/ledBoff"><button class="button button2">OFF</button></a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
