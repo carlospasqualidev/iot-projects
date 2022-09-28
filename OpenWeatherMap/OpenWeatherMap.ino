@@ -10,7 +10,7 @@ unsigned long lastTime = 0; //Variável de auxílio para medição/sincronizaç�
 unsigned long timerDelay = 5000; //Timer de 5 segundos entre requisições.
 //Seu nome de domínio com caminho de URL ou endereço IP
 String serverName =
-  "http://http://api.openweathermap.org/data/2.5/weather?q=Criciuma,BR&APPID=e4c26f52066fe1ee7e427a2799cf8dcc";
+  "http://api.openweathermap.org/data/2.5/weather?q=Criciuma,BR&APPID=e4c26f52066fe1ee7e427a2799cf8dcc";
 
 void setup() {
   Serial.begin(115200);
