@@ -38,7 +38,7 @@ void loop() {
       String serverPath = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + countryCode + "&APPID=" + openWeatherMapApiKey + "&units=metric";
       
       jsonBuffer = httpGETRequest(serverPath.c_str());
-      // Serial.println(jsonBuffer);
+      Serial.println(jsonBuffer);
       JSONVar myObject = JSON.parse(jsonBuffer);
   
       // JSON.typeof(jsonVar) pode ser usado para obter o tipo da variável
@@ -47,8 +47,8 @@ void loop() {
         return;
       }
     
-      // Serial.print("JSON object = ");
-      // Serial.println(myObject);
+      Serial.print("JSON object = ");
+      Serial.println(myObject);
       Serial.print("Temperatura: ");
       Serial.println(myObject["main"]["temp"]);
       Serial.print("Pressão: ");
